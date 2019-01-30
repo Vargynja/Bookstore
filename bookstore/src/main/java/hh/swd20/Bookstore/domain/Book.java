@@ -19,7 +19,6 @@ public class Book {
 	private double price;
 
 	public Book() {
-
 	}
 
 	public Book(String title, String author, int year, String isbn, double price) {

@@ -8,6 +8,7 @@ import hh.swd20.Bookstore.domain.BookRepository;
 
 @Controller
 public class BookController {
+	
 	@Autowired
 	private BookRepository bkrepo;
 
