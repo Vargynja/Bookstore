@@ -1,27 +1,30 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content Type" content="text/html" charset="UTF-8">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 <title>Booklist</title>
 </head>
 <body>
 	<h1>Books</h1>
-	<table>
+	<table class="table table-striped">
 		<tr>
 			<th>Author</th>
 			<th>Title</th>
 			<th>ISBN</th>
 			<th>Year</th>
+			<th></th>
+			<th></th>
 		</tr>
 		<tr th:each="b : ${books}">
 			<td th:text="${b.author}">Author</td>
 			<td th:text="${b.title}">Title</td>
 			<td th:text="${b.isbn}">ISBN</td>
 			<td th:text="${b.year}">Year</td>
-			<td><a th:href="@{./delete/{id}(id=${b.id})}">Delete</a></td>
-			<td><a th:href="@{./edit/{id}(id=${b.id})}">Edit</a></td>
+			<td><a class="btn btn-danger" th:href="@{./delete/{id}(id=${b.id})}">Delete</a></td>
+			<td><a class="btn btn-success" th:href="@{./edit/{id}(id=${b.id})}">Edit</a></td>
 		</tr>
 	</table>
-	<a href="./addbook" class="btn btn-primary">Add book</a>
+	<a href="./addbook" class="btn btn-success">Add book</a>
 </body>
 </html>
