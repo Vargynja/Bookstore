@@ -31,20 +31,27 @@ public class BookController {
 
 	@RequestMapping("/addbook")
 	public String createBook(Model model) {
-		model.addAttribute("newbook", new Book());
+		model.addAttribute("book", new Book());
 		return "addbook";
 	}
 
 	@PostMapping("/save")
-	public String addBook(@ModelAttribute("newbook") Book book) {
+	public String addBook(@ModelAttribute("book") Book book) {
 		bkrepo.save(book);
 		return "redirect:booklist";
 	}
-	
+
 	@GetMapping("/delete/{id}")
-	public String deleteBook(@PathVariable("id")Long bookId, Model model) {
+	public String deleteBook(@PathVariable("id") Long bookId, Model model) {
 		bkrepo.deleteById(bookId);
 		return "redirect:../booklist";
 	}
-
+	
+	@GetMapping("/edit/{id}")
+	public String editBook(@PathVariable("id") Long bookId, Model model) {
+		model.addAttribute("book",bkrepo.findById(bookId));
+		return "editbook";
 	}
+	
+
+}
