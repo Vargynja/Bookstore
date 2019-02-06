@@ -24,8 +24,7 @@ public class Book {
 	@JoinColumn(name = "categoryId")
 	private Category category;
 
-	public Book() {
-	}
+	public Book() {}
 
 	public Book(String title, String author, int year, String isbn, double price, Category category) {
 		this.title = title;
@@ -94,7 +93,9 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book [title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn + ", price=" + price
-				+ "]";
+		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn
+				+ ", price=" + price + ", category=" + category + "]";
 	}
+
+	
 }
