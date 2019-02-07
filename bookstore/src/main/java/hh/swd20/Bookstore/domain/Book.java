@@ -20,7 +20,7 @@ public class Book {
 	private String isbn;
 	private double price;
 
-	@ManyToOne
+	@ManyToOne //db connection
 	@JoinColumn(name = "categoryId")
 	private Category category;
 

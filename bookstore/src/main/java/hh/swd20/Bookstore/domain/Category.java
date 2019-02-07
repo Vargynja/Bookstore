@@ -20,7 +20,7 @@ public class Category {
 	private String name;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
-	private List<Book> books;
+	private List<Book> books; //db connection
 
 	public Category() {
 	}
