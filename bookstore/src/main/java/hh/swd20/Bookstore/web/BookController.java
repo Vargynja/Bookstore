@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import hh.swd20.Bookstore.domain.Book;
-import hh.swd20.Bookstore.domain.BookRepository;
-import hh.swd20.Bookstore.domain.CategoryRepository;
+
+import hh.swd20.Bookstore.domain.*;
 
 @Controller
 public class BookController {
@@ -54,7 +53,7 @@ public class BookController {
 	
 	@GetMapping("/edit/{id}")
 	public String editBook(@PathVariable("id") Long bookId, Model model) {
-		model.addAttribute("book",bkrepo.findById(bookId));
+		model.addAttribute("book",bkrepo.findById(bookId).get());
 		model.addAttribute("categories", catrepo.findAll());
 		return "editbook";
 	}
