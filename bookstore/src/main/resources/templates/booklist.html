@@ -1,12 +1,27 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 <meta http-equiv="Content Type" content="text/html" charset="UTF-8">
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 <title>Booklist</title>
 </head>
 <body>
-	<h1>Books</h1>
+<div class="container">
+	<div class="row">
+		<div class="col-8">
+			<h1>Books</h1>
+		</div>
+		<div class="col-2">
+			<p th:inline="text">Current user: [[${#httpServletRequest.remoteUser}]]</p>
+		</div>
+		<div class="col-2">
+		<form th:action="@{/logout}" method="post">
+			<input class="btn btn-warning" type="submit" value="Sign Out"/>
+		</form>
+		</div>
+	</div>
+	</div>
 	<table class="table table-striped">
 		<tr>
 			<th>Author</th>
@@ -14,7 +29,7 @@
 			<th>ISBN</th>
 			<th>Year</th>
 			<th>Category</th>
-			<th></th>
+			<th sec:authorize="hasRole('ADMIN')"></th>
 			<th></th>
 		</tr>
 		<tr th:each="b : ${books}">
@@ -22,8 +37,8 @@
 			<td th:text="${b.title}">Title</td>
 			<td th:text="${b.isbn}">ISBN</td>
 			<td th:text="${b.year}">Year</td>
-			<td th:text="${b.category}">
-			<td><a class="btn btn-danger" th:href="@{./delete/{id}(id=${b.id})}">Delete</a></td>
+			<td th:text="${b.category}">	
+			<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-danger" th:href="@{./delete/{id}(id=${b.id})}">Delete</a></td>
 			<td><a class="btn btn-warning" th:href="@{./edit/{id}(id=${b.id})}">Edit</a></td>
 		</tr>
 	</table>

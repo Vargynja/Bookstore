@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content Type" content="text/html" charset="UTF-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<title>Login</title>
+</head>
+<body>
+	<h1>Login to the service</h1>
+	<div th:if="${param.error}">Invalid username or password.</div>
+
+	<form th:action="@{/login}" method="post" class="form-inline">
+		<div>
+			<label>Username : <input type="text" name="username" class="form-control"/></label>
+		</div>
+		<div>
+			<label> Password: <input type="password" name="password" class="form-control"/></label>
+		</div>
+		<div>
+			<input class="btn btn-success" type="submit" value="Sign In" />
+		</div>
+	</form>
+</body>
+</html>
