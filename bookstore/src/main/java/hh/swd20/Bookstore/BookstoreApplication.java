@@ -11,6 +11,8 @@ import hh.swd20.Bookstore.domain.Book;
 import hh.swd20.Bookstore.domain.BookRepository;
 import hh.swd20.Bookstore.domain.Category;
 import hh.swd20.Bookstore.domain.CategoryRepository;
+import hh.swd20.Bookstore.domain.User;
+import hh.swd20.Bookstore.domain.UserRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -22,7 +24,7 @@ public class BookstoreApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner bookDemo(BookRepository bkrepo, CategoryRepository catrepo) {
+	public CommandLineRunner bookDemo(BookRepository bkrepo, CategoryRepository catrepo, UserRepository urepo) {
 		return(args) -> {
 			log.info("add 3 categories");
 			catrepo.save(new Category("Fantasy"));
@@ -38,6 +40,13 @@ public class BookstoreApplication {
 			for (Book book : bkrepo.findAll()) {
 				log.info(book.toString());
 			}
+			
+			log.info("add users");
+			User user1 = new User("user","$2a$10$LTSKPt1JXGE5XSF5HQnHa.Gvj4T6IGms4B3sF3KUA7hrfo8jLKjoe", "gjag", "USER");
+			User user2 = new User("admin","$2a$10$FkneFIYR6qF/zTFy6Iq1jOMXlApALF9/LMbuNxA85J0zk6gF4cgEq", "ghga", "ADMIN");
+			
+			urepo.save(user1);
+			urepo.save(user2);
 		};
 	}
 

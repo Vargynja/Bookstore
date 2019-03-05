@@ -13,7 +13,7 @@
 			<h1>Books</h1>
 		</div>
 		<div class="col-2">
-			<p th:inline="text">Current user: [[${#httpServletRequest.remoteUser}]]</p>
+			<h6 th:inline="text">Current user: [[${#httpServletRequest.remoteUser}]]</h6>
 		</div>
 		<div class="col-2">
 		<form th:action="@{/logout}" method="post">
@@ -29,7 +29,7 @@
 			<th>ISBN</th>
 			<th>Year</th>
 			<th>Category</th>
-			<th sec:authorize="hasRole('ADMIN')"></th>
+			<th sec:authorize="hasAuthority('ADMIN')"></th>
 			<th></th>
 		</tr>
 		<tr th:each="b : ${books}">
@@ -38,7 +38,7 @@
 			<td th:text="${b.isbn}">ISBN</td>
 			<td th:text="${b.year}">Year</td>
 			<td th:text="${b.category}">	
-			<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-danger" th:href="@{./delete/{id}(id=${b.id})}">Delete</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-danger" th:href="@{./delete/{id}(id=${b.id})}">Delete</a></td>
 			<td><a class="btn btn-warning" th:href="@{./edit/{id}(id=${b.id})}">Edit</a></td>
 		</tr>
 	</table>
